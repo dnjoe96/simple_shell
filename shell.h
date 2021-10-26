@@ -15,4 +15,7 @@ char *_strdup(char *str);
 /* string_tokenizing*/
 char **_strtok(char *str, const char *delim);
 
+/* getpath */
+char **getpath(void);
+
 #endif /* !SHELL_H */

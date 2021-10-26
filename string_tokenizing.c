@@ -21,7 +21,7 @@ char **_strtok(char *str, const char *delim)
 	while (tokens != NULL)
 	{
 		argv[i] = tokens;
-		tokens = strtok(NULL, " \n");
+		tokens = strtok(NULL, delim);
 		i++;
 	}
 	argv[i] = NULL;

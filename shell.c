@@ -15,7 +15,8 @@ int main(void)
 	char *exit_cond = "exit";
 	pid_t child_pid;
 
-	do {
+	while (1)
+	{
 		write(STDOUT_FILENO, "$ ", 3);
 
 		commands = malloc(sizeof(char *));
@@ -45,6 +46,7 @@ int main(void)
 		{
 			if (execve(argv[0], argv, NULL) == -1)
 				perror("Error");
+			exit(0);
 			/*free(argv);*/
 		}
 		else
@@ -52,7 +54,7 @@ int main(void)
 		free(commands);
 		free(argv);
 
-	} while (1);
+	}
 
 	if (commands != NULL)
 		free(commands);
