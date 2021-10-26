@@ -14,7 +14,8 @@ int main(void)
 	ssize_t chars_read;
 	char *exit_cond = "exit";
 	pid_t child_pid;
-
+	
+	/**
 	write(STDOUT_FILENO, "$ ", 3);
 
 	chars_read = getline(&commands, &bytes_read, stdin);
@@ -24,24 +25,9 @@ int main(void)
 	}
 
 	argv = _strtok(commands);
+	*/
 
-	while (_strcmp(argv[0], exit_cond) != 0)
-	{
-		/*argv = malloc(sizeof(char *) * array_size);
-		if (argv == NULL)
-		{
-			perror("Error: Memory allocation failure\n");
-			break;
-		}
-
-		tokens = strtok(commands, " \n");
-		while (tokens != NULL)
-		{
-			argv[i] = tokens;
-			tokens = strtok(NULL, " \n");
-			i++;
-		}
-		argv[i] = NULL;*/
+	do {
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -65,7 +51,8 @@ int main(void)
 		}
 
 		argv = _strtok(commands);
-	}
+
+	} while (_strcmp(argv[0], exit_cond) != 0);
 
 	if (_strcmp(argv[0], exit_cond) == 0)
 			exit(EXIT_SUCCESS);
