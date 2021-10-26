@@ -13,6 +13,6 @@ unsigned int _strlen(char *str);
 char *_strdup(char *str);
 
 /* string_tokenizing*/
-char **_strtok(char *str);
+char **_strtok(char *str, const char *delim);
 
 #endif /* !SHELL_H */
