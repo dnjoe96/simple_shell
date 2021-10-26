@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /* string manipulator functions */
 int _strcmp(char *str_1, char *str_2);
@@ -17,5 +20,6 @@ char **_strtok(char *str, const char *delim);
 
 /* getpath */
 char **getpath(void);
+char *commandpath(char *command);
 
 #endif /* !SHELL_H */
