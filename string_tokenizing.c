@@ -7,13 +7,13 @@
  * Return: Array of the tokens
  */
 
-char **_strtok(char *str)
+char **_strtok(char *str, const char *delim)
 {
 	char *tokens;
 	char **argv;
 	int i = 0, array_size = 1024;
 
-	tokens = strtok(str, " \n");
+	tokens = strtok(str, delim);
 	argv = malloc(sizeof(char *) * array_size);
 	if (argv == NULL)
 		return (NULL);
