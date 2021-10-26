@@ -7,55 +7,57 @@
  */
 int main(void)
 {
-	char *commands = NULL;
+	char *commands;
 	char **argv;
 	int status;
-	size_t bytes_read = 0;
+	size_t bytes_read = 1;
 	ssize_t chars_read;
 	char *exit_cond = "exit";
 	pid_t child_pid;
-	
-	/**
-	write(STDOUT_FILENO, "$ ", 3);
-
-	chars_read = getline(&commands, &bytes_read, stdin);
-	if (chars_read == -1)
-	{
-		perror("Error: Could not read file_stream");
-	}
-
-	argv = _strtok(commands);
-	*/
 
 	do {
-		child_pid = fork();
-		if (child_pid == -1)
-		{
-			perror("Error: Failed to fork process!");
-			break;
-		}
-		else if (child_pid == 0)
-		{
-			if (execve(argv[0], argv, NULL) == -1)
-				perror("Error");
-		}
-		else
-			wait(&status);
-
 		write(STDOUT_FILENO, "$ ", 3);
 
+		commands = malloc(sizeof(char *));
 		chars_read = getline(&commands, &bytes_read, stdin);
 		if (chars_read == -1)
 		{
 			perror("Error: Could not read file_stream");
 		}
 
-		argv = _strtok(commands);
+		/*commands[_strlen(commands) - 1] = '\0';*/
 
-	} while (_strcmp(argv[0], exit_cond) != 0);
+		argv = _strtok(commands, " \n\t");
+		/*free(commands);*/
 
-	if (_strcmp(argv[0], exit_cond) == 0)
-			exit(EXIT_SUCCESS);
+		if (_strcmp(argv[0], exit_cond) == 0)
+			break;
+		/*free(commands);*/
+
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			perror("Error: Failed to fork process!");
+			break;
+		}
+
+		if (child_pid == 0)
+		{
+			if (execve(argv[0], argv, NULL) == -1)
+				perror("Error");
+			/*free(argv);*/
+		}
+		else
+			wait(&status);
+		free(commands);
+		free(argv);
+
+	} while (1);
+
+	if (commands != NULL)
+		free(commands);
+	if (argv != NULL)
+		free(argv);
 
 	return (0);
 }
