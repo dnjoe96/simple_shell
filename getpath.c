@@ -40,7 +40,7 @@ char **getpath(void)
 char *commandpath(char *command)
 {
 	int i = 0;
-	char *full, *full2;
+	char *full;
 	char **path;
 
 	struct stat sb;
@@ -60,7 +60,6 @@ char *commandpath(char *command)
 		if (stat(full, &sb) == 0)
 			return (full);
 
-		//printf("%s\n", full);
 		i++;
 		
 	}
