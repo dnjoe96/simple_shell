@@ -37,11 +37,14 @@ char **_strtok(char *str, const char *delim);
 
 /* getpath */
 char **getpath(void);
-char *commandpath(char *command);
+char *commandpath(char *command, char **path);
 
 /* built-in functions */
 int _cd(char **args);
 int _exitprog(char **args);
 int _help(char **args);
+
+/* fork_wait_exec function */
+int fork_wait_exec(char **argv);
 
 #endif /* !SHELL_H */
