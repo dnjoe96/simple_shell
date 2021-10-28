@@ -70,8 +70,12 @@ int main(void)
 					perror("Error");
 			}
 		}
-		
-		free(commands);
+	/*	
+		if (commands != NULL)
+			free(commands);
+		if (argv != NULL)
+			free(argv);
+	*/
 	}
 
 	if (commands != NULL)
