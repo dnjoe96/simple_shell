@@ -15,12 +15,12 @@
  * struct command - A string - function pair
  *
  * @buf:  the command
- * @print: Special function implemented to print data of a given
+ * @execute: Special function implemented to print data of a given
  * specifier to stdout
  *
  * Description: A specifier - function pair
  */
-typedef struct
+typedef struct command
 {
 	char *buf;
 	int (*execute)(char **args);
