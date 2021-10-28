@@ -39,7 +39,7 @@ int _help(char **args)
 	write(1, "* cd\n", 5);
 	write(1, "* help\n", 7);
 	write(1, "* exit\n", 7);
-	write(1, "\nUse the man command for information on other programs.\n", 55);
+	write(1, "\nUse the man command for information on other programs.\n", 57);
 
 	free(args);
 	return 1;
@@ -68,6 +68,8 @@ int print_env(char **argv)
 	while (environ[i] != NULL)
 	{
 		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
 	}
 	free(argv);
 	return (0);
