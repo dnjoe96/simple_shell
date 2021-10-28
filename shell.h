@@ -43,6 +43,7 @@ char *commandpath(char *command, char **path);
 int _cd(char **args);
 int _exitprog(char **args);
 int _help(char **args);
+int print_env(char **argv);
 
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
