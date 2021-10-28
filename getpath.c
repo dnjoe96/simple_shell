@@ -15,7 +15,6 @@ char **getpath(void)
 
 	while (environ[i] != NULL)
 	{
-		
 		if (environ[i][0] == 'P' && environ[i][1] == 'A' && environ[i][2] == 'T' && environ[i][3] == 'H')
 		{
 			paths = _strtok(environ[i], "=");
@@ -24,10 +23,9 @@ char **getpath(void)
 
 			break;
 		}
-	
 		i++;
 	}
-	
+
 	return (paths);
 }
 
@@ -37,33 +35,37 @@ char **getpath(void)
  * @command: Command entered
  * Return: Full path of command if found, otherwise, return NULL
  */
-char *commandpath(char *command)
+char *commandpath(char *command, char **path)
 {
 	int i = 0;
 	char *full;
-	char **path;
 
 	struct stat sb;
 
-	path = getpath();
+	/*printf("path[i] = %s\n", path[i]);*/
 
 	while (path[i])
 	{
 		full = malloc(sizeof(char*));
 		if (full == NULL)
+		{
+			/*printf("Memory not allocated in commandpath function\n");*/
 			return (NULL);
-		
+		}
+
 		strcpy(full, path[i]);
 		full = strcat(full, "/");
 		full = strcat(full, command);
 
+		/*printf("full = %s\n", full);*/
 		if (stat(full, &sb) == 0)
 			return (full);
 
 		i++;
-		
+
 	}
 
+	/*printf("No path found\n");*/
 	return (NULL);
 }
 
