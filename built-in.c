@@ -40,7 +40,7 @@ int _help(char **args)
 	write(1, "* help\n", 7);
 	write(1, "* exit\n", 7);
 	write(1, "\nUse the man command for information on other programs.\n", 55);
-	
+
 	free(args);
 	return 1;
 }
@@ -52,4 +52,23 @@ int _exitprog(char **args)
 {
 	free(args);
 	return 0;
+}
+
+/**
+ * print_env - Prints the current environment
+ * argv: Command env
+ *
+ * Return: Nothing
+ */
+int print_env(char **argv)
+{
+	extern char **environ;
+	int i = 0;
+
+	while (environ[i] != NULL)
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+	}
+	free(argv);
+	return (0);
 }
