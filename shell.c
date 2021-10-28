@@ -15,6 +15,15 @@ int main(void)
 	char *exit_cond = "exit";
 	pid_t child_pid;
 
+	/**
+	set commands[] = {
+		{"exit", _exitprog},
+		{"cd", _cd},
+		{"help", _help},
+		{"others", _others},
+	};
+	*/
+
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 3);
