@@ -51,6 +51,7 @@ int _help(char **args)
 int _exitprog(char **args)
 {
 	free(args);
+	exit(0);
 	return 0;
 }
 

@@ -5,11 +5,11 @@
  *
  * Return: Always 0 (success)
  */
-int main(void)
+int main(__attribute__((unused)) int argc, char **argv)
 {
 	int i;
 	char *commands, *check_path;
-	char **argv;
+	/*char **argv;*/
 	char **path;
 	size_t bytes_read = 1;
 	ssize_t chars_read;
@@ -24,7 +24,7 @@ int main(void)
 	};
 
 	path = getpath();
-	while (1)
+	while (1 && argc == 1)
 	{
 		write(STDOUT_FILENO, "$ ", 3);
 
