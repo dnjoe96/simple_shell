@@ -7,23 +7,23 @@
  */
 int main(void)
 {
-	char *commands;
+	char *commands, *check_path;
 	char **argv;
-	int status;
+	char **path;
 	size_t bytes_read = 1;
 	ssize_t chars_read;
 	char *exit_cond = "exit";
-	pid_t child_pid;
 
 	/**
 	set commands[] = {
 		{"exit", _exitprog},
 		{"cd", _cd},
 		{"help", _help},
-		{"others", _others},
+		{"others", fork_wait_exec},
 	};
 	*/
 
+	path = getpath();
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 3);
@@ -44,25 +44,16 @@ int main(void)
 			break;
 		/*free(commands);*/
 
-		child_pid = fork();
-		if (child_pid == -1)
+		check_path = commandpath(argv[0], path);
+		/*printf("check_path = %s\n", check_path);*/
+		if (check_path != NULL)
 		{
-			perror("Error: Failed to fork process!");
-			break;
-		}
-
-		if (child_pid == 0)
-		{
-			if (execve(argv[0], argv, NULL) == -1)
-				perror("Error");
-			exit(0);
-			/*free(argv);*/
+			argv[0] = check_path;
+			fork_wait_exec(argv);
 		}
 		else
-			wait(&status);
+			perror("Error");
 		free(commands);
-		free(argv);
-
 	}
 
 	if (commands != NULL)
