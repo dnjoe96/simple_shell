@@ -19,6 +19,7 @@ int main(void)
 		{"exit", _exitprog},
 		{"cd", _cd},
 		{"help", _help},
+		{"env", print_env}
 		{"others", fork_wait_exec},
 	};
 	*/
