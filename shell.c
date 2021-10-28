@@ -7,6 +7,7 @@
  */
 int main(void)
 {
+	int i;
 	char *commands, *check_path;
 	char **argv;
 	char **path;
@@ -14,15 +15,13 @@ int main(void)
 	ssize_t chars_read;
 	char *exit_cond = "exit";
 
-	/**
-	set commands[] = {
+	command command_struct[] = {
 		{"exit", _exitprog},
 		{"cd", _cd},
 		{"help", _help},
-		{"env", print_env}
+		{"env", print_env},
 		{"others", fork_wait_exec},
 	};
-	*/
 
 	path = getpath();
 	while (1)
@@ -36,24 +35,42 @@ int main(void)
 			perror("Error: Could not read file_stream");
 		}
 
-		/*commands[_strlen(commands) - 1] = '\0';*/
+		if (commands[0] == '\n')
+			continue;
+		
+		commands[_strlen(commands) - 1] = '\0';
 
-		argv = _strtok(commands, " \n\t");
+		argv = _strtok(commands, " \t");
 		/*free(commands);*/
 
-		if (_strcmp(argv[0], exit_cond) == 0)
+		if (strcmp(argv[0], exit_cond) == 0)
 			break;
 		/*free(commands);*/
 
 		check_path = commandpath(argv[0], path);
 		/*printf("check_path = %s\n", check_path);*/
-		if (check_path != NULL)
+		
+		for (i = 0; i < 5; i++)
 		{
-			argv[0] = check_path;
-			fork_wait_exec(argv);
+			if (strcmp(argv[0], command_struct[i].buf) == 0)
+			{
+				command_struct[i].execute(argv);
+				break;
+			}
+
+			if (i == 4)
+			{
+				if (check_path != NULL)
+				{
+					argv[0] = check_path;
+					/*fork_wait_exec(argv);*/
+					command_struct[i].execute(argv);
+				}
+				else
+					perror("Error");
+			}
 		}
-		else
-			perror("Error");
+		
 		free(commands);
 	}
 
