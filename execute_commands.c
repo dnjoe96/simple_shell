@@ -24,6 +24,7 @@ int fork_wait_exec(char **argv)
 		/*printf("%s\n", argv[0]);*/
 		if (execve(argv[0], argv, NULL) == -1)
 			perror("Error");
+		free(argv);
 		exit(0);
 		/*free(argv);*/
 	}

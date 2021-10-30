@@ -62,6 +62,7 @@ char *commandpath(char *command, char **path)
 			return (full);
 
 		i++;
+		free(full);
 
 	}
 
