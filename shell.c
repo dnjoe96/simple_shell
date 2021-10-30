@@ -1,4 +1,10 @@
 #include "shell.h"
+#include <signal.h>
+
+void handle_sigkill(__attribute__((unused)) int sig)
+{
+        signal(SIGINT, handle_sigkill);
+}
 
 /**
  * main - Creates a unix command line interpreter
@@ -23,10 +29,12 @@ int main(__attribute__((unused)) int argc, char **argv)
 		{"others", fork_wait_exec},
 	};
 
+	signal(SIGINT, handle_sigkill);
+
 	path = getpath();
 	while (1 && argc == 1)
 	{
-		write(STDOUT_FILENO, "$ ", 3);
+		write(STDOUT_FILENO, "$ ", 2);
 
 		commands = malloc(sizeof(char *));
 		chars_read = getline(&commands, &bytes_read, stdin);
