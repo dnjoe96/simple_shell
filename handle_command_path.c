@@ -1,7 +1,10 @@
 #include "shell.h"
 
 /**
- * handle_command_path - allows execution of a command or its full path
+ * handle_command_path - allows execution of a command though
+ *                       its name or its full path
+ * @argv: commands to be executed
+ * @path: Full path of the command to be executed
  *
  * Return: Nothing
  */
