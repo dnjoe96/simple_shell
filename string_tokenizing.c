@@ -3,6 +3,7 @@
 /**
  * _strtok - Breaks a string into a sequence of tokens
  * @str: String to be broken into tokens
+ * @delim: The delimiter used for tokenizing the string
  *
  * Return: Array of the tokens
  */
