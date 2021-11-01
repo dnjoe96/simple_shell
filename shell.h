@@ -45,6 +45,9 @@ int _exitprog(char **args);
 int _help(char **args);
 int print_env(char **argv);
 
+/* parse commands */
+int parse(char **argv, char **paths);
+
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
 
