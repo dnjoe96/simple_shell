@@ -2,9 +2,9 @@
 
 /**
  * _cd - function to implement change directory
- *
  * @args: command arguements
- * Return
+ *
+ * Return: 1 on success
  */
 int _cd(char **args)
 {
@@ -20,18 +20,19 @@ int _cd(char **args)
 		}
 	}
 
-	free(args);
-	return 1;
+	/*free(args);*/
+	return (1);
 }
 
 /**
  * _help - to display shell usage
  * now it is hard coded, but as we progress, we will be reading
  * from a file
+ * @args: command to be executed
  *
  * Return: Int
  */
-int _help(char **args)
+int _help(__attribute__((unused)) char **args)
 {
 	write(1, "Joseph & Washington shell\n", 26);
 	write(1, "Type program names and arguments, and hit enter.\n", 49);
@@ -41,27 +42,30 @@ int _help(char **args)
 	write(1, "* exit\n", 7);
 	write(1, "\nUse the man command for information on other programs.\n", 57);
 
-	free(args);
-	return 1;
+	/*free(args);*/
+	return (1);
 }
 
 /**
- * _exit - The  function that would exit the program
+ * _exitprog - The  function that would exit the program
+ * @args: The command entered
+ *
+ * Return: 0 on success
  */
 int _exitprog(char **args)
 {
 	free(args);
 	exit(0);
-	return 0;
+	return (0);
 }
 
 /**
  * print_env - Prints the current environment
- * argv: Command env
+ * @argv: Command "env"
  *
  * Return: Nothing
  */
-int print_env(char **argv)
+int print_env(__attribute__((unused)) char **argv)
 {
 	extern char **environ;
 	int i = 0;
@@ -72,6 +76,6 @@ int print_env(char **argv)
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
-	free(argv);
+	/*free(argv);*/
 	return (0);
 }
