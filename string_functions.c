@@ -6,22 +6,21 @@
  * @str_2: Second string
  *
  * Return: - (0) if the strings are equal
- *         - -ve integer if str_1 < str_2
- *         - +ve integer if str_1 > str_2
+ *         - -1 if str_1 < str_2
+ *         - 1 if str_1 > str_2
  */
 int _strcmp(char *str_1, char *str_2)
 {
-	int i;
-
-	for (i = 0; str_1[i] && str_2[i]; i++)
+	while ((*str_1 && *str_2) && (*str_1 == *str_2))
 	{
-		if (str_1[i] < str_2[1])
-			return (str_1[i] - str_2[i]);
-		else if (str_1[i] > str_2[i])
-			return (str_1[i] - str_2[i]);
+		str_1++;
+		str_2++;
 	}
 
-	return (0);
+	if (*str_1 == *str_2)
+		return (0);
+	else
+		return (*str_1 - *str_2);
 }
 
 /**
