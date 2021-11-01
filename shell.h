@@ -51,4 +51,7 @@ int parse(char **argv, char **paths);
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
 
+/* hanlde_command_path */
+void handle_command_path(char **argv, char **path);
+
 #endif /* !SHELL_H */
