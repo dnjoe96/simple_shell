@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <signal.h>
 
 /**
  * struct command - A string - function pair
@@ -45,13 +45,13 @@ int _exitprog(char **args);
 int _help(char **args);
 int print_env(char **argv);
 
-/* parse commands */
-int parse(char **argv, char **paths);
+/* exec_func */
+int exec_func(char **argv, char **paths);
 
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
 
-/* hanlde_command_path */
-void handle_command_path(char **argv, char **path);
+/* _execute */
+void _execute(char **argv, char **path);
 
 #endif /* !SHELL_H */
