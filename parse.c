@@ -20,7 +20,6 @@ int parse(char **argv, char **path)
         };
 
         check_path = commandpath(argv[0], path);
-        /*printf("check_path = %s\n", check_path);*/
 
         for (i = 0; i < 5; i++)
         {
@@ -35,7 +34,7 @@ int parse(char **argv, char **path)
                         if (check_path != NULL)
                         {
                                 argv[0] = check_path;
-                                /*fork_wait_exec(argv);*/
+
                                 command_struct[i].execute(argv);
                         }
                         else
@@ -44,4 +43,3 @@ int parse(char **argv, char **path)
         }
         return (0);
 }
-
