@@ -2,7 +2,7 @@
 
 /**
  * fork_wait_exec - executes commands
- * @args: command to be executed
+ * @argv: command to be executed
  *
  * Return: 0
  */
@@ -21,12 +21,12 @@ int fork_wait_exec(char **argv)
 
 	if (child_pid == 0)
 	{
-		/*printf("%s\n", argv[0]);*/
+
 		if (execve(argv[0], argv, NULL) == -1)
 			perror("Error");
 		free(argv);
 		exit(0);
-		/*free(argv);*/
+
 	}
 	else
 		wait(&status);
