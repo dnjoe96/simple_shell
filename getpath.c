@@ -2,9 +2,8 @@
 
 /**
  * getpath - get the paths of the system from the environment
- * variables.
+ *           variables.
  *
- * @env: System environment
  * Return: Pointer to the first node of the list
  */
 char **getpath(void)
@@ -15,7 +14,8 @@ char **getpath(void)
 
 	while (environ[i] != NULL)
 	{
-		if (environ[i][0] == 'P' && environ[i][1] == 'A' && environ[i][2] == 'T' && environ[i][3] == 'H')
+		if (environ[i][0] == 'P' && environ[i][1] == 'A' && environ[i]
+		    [2] == 'T' && environ[i][3] == 'H')
 		{
 			paths = _strtok(environ[i], "=");
 
@@ -31,8 +31,9 @@ char **getpath(void)
 
 /**
  * commandpath - Find the path of a command
- *
  * @command: Command entered
+ * @path: Full path of the command
+ *
  * Return: Full path of command if found, otherwise, return NULL
  */
 char *commandpath(char *command, char **path)
@@ -42,14 +43,14 @@ char *commandpath(char *command, char **path)
 
 	struct stat sb;
 
-	/*printf("path[i] = %s\n", path[i]);*/
+
 
 	while (path[i])
 	{
-		full = malloc(sizeof(char*));
+		full = malloc(sizeof(char *));
 		if (full == NULL)
 		{
-			/*printf("Memory not allocated in commandpath function\n");*/
+
 			return (NULL);
 		}
 
@@ -57,7 +58,7 @@ char *commandpath(char *command, char **path)
 		full = strcat(full, "/");
 		full = strcat(full, command);
 
-		/*printf("full = %s\n", full);*/
+
 		if (stat(full, &sb) == 0)
 			return (full);
 
@@ -66,20 +67,6 @@ char *commandpath(char *command, char **path)
 
 	}
 
-	/*printf("No path found\n");*/
+
 	return (NULL);
 }
-
-/**
-int main(void)
-{
-	char *c = commandpath("cd");
-
-	if (c == NULL)
-		printf("Error, command not found\n");
-	else
-		printf("%s\n", c);
-
-	return (0);
-}
-*/
