@@ -67,7 +67,7 @@ int _exitprog(char **args)
  */
 int print_env(__attribute__((unused)) char **argv)
 {
-	extern char **environ;
+	/*extern char **environ;*/
 	int i = 0;
 
 	while (environ[i] != NULL)
