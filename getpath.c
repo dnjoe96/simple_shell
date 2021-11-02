@@ -9,7 +9,7 @@
 char **getpath(void)
 {
 	int i = 0;
-	extern char **environ;
+	/*extern char **environ;*/
 	char **paths;
 
 	while (environ[i] != NULL)

@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <signal.h>
 
+extern char **environ;
+
 /**
  * struct command - A string - function pair
  *
