@@ -1,0 +1,69 @@
+.TH HSH 1 "10 Oct 2021" "1.0"
+
+.SH NAME
+.B Holberton Shell
+- a simple command line interpreter based on sh
+
+.SH SYNOPSIS
+.B hsh\fR [\fIfilename\fR]
+
+.SH DESCRIPTION
+.B hsh\fR is a UNIX based simple command line interpreter that executes commands read from the standard input or from a file.
+
+.P
+.B hsh\fR can be used in both an interactive and a non interactive mode. In \fInon\fR-\fIinteractive\fR mode, \fBhsh\fR is invoked using standard input not connected to a terminal, then reads and executes commands.
+
+In \fIinteractive\fR mode, \fBhsh\fR is invoked with standard input connected to a terminal.
+A \fI$\fR is displayed when in \fIinteractive\fR mode to prompt the user to enter commands to the standard input, with or without arguments, in a similar way to \fBsh\fR.
+
+.PP
+.B hsh\fR checks whether the command entered contains a "/" or a "."
+If it does, the command and arguments are executed.
+If it doesn't, \fBhsh\fR checks whether the command exists in one of the directories as specified by the environment variable \fIPATH\fR. If the command is found, the arguments passed to the command are processed and the command executed normally.
+Otherwise, an error message is displayed to the standard error.
+
+.SH Built-In Commands
+.B exit
+.RS
+Usage: [\fBexit\fR]
+
+Exits the \fBhsh\fR.
+.B hsh\fR does not handle exit function arguments yet.
+.RE
+
+.B env
+.RS
+Usage: [\fBenv\fR]
+
+Prints the current environment.
+.RE
+
+.B cd
+.RS
+Usage: \fBcd\fR [\fIdirectory\fR].
+
+Changes the current directory of the process.
+If no argument is given to \fBcd\fR the command is interpreted like \fBcd $HOME\fR.
+.RE
+
+.B help
+.RS
+Usage: \fBhelp\fR [built-in]
+
+Displays information about \fBhsh\fR built-in commands.
+
+The kill process command \fICtrl+C\fR has been disabled.
+
+.SH BUGS
+.B hsh\fR currently has no known bugs. Any bug reports should be made to the authors of the program. See \fBAUTHORS\fR below.
+
+.SH AUTHORS
+
+Washington Obungu
+<\fItobungu@gmail.com\fR>
+
+Joseph Emmanuel
+<\fIdonjoedbest@gmail.com\fR>
+
+.SH SEE ALSO
+B. sh(1), chdir(2), execve(2), fork(2), free(2), getline(3), isatty(3), malloc(3), perror(3), signal(2), stat(2), wait(2), write(2).
