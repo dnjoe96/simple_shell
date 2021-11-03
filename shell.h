@@ -48,12 +48,9 @@ int _help(char **args);
 int print_env(char **argv);
 
 /* exec_func */
-int exec_func(char **argv, char **paths);
+int exec_func(char **argv, char **paths, char *prog);
 
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
-
-/* _execute */
-void _execute(char **argv, char **path);
 
 #endif /* !SHELL_H */
