@@ -10,23 +10,25 @@ char **getpath(void)
 {
 	int i = 0;
 	/*extern char **environ;*/
-	char **paths;
+	char **paths1;
+	char **paths2;
 
 	while (environ[i] != NULL)
 	{
 		if (environ[i][0] == 'P' && environ[i][1] == 'A' && environ[i]
 		    [2] == 'T' && environ[i][3] == 'H')
 		{
-			paths = _strtok(environ[i], "=");
+			paths1 = _strtok(environ[i], "=");
 
-			paths = _strtok(paths[1], ":");
+			paths2 = _strtok(paths1[1], ":");
 
 			break;
 		}
 		i++;
 	}
-
-	return (paths);
+	
+	free(paths1);
+	return (paths2);
 }
 
 /**
@@ -47,7 +49,7 @@ char *commandpath(char *command, char **path)
 
 	while (path[i])
 	{
-		full = malloc(sizeof(char *));
+		full = malloc(sizeof(char *) * 1024);
 		if (full == NULL)
 		{
 
