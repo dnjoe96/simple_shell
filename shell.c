@@ -22,6 +22,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *commands, *exit_cond = "exit";
 	char **path;
+	char *prog;
 	size_t bytes_read = 1;
 	ssize_t chars_read;
 	int interactive = 1;
@@ -32,6 +33,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 
 	if (!isatty(STDIN_FILENO))
 		interactive = 0;
+	prog = argv[0];
 
 	while (1 && argc == 1)
 	{
@@ -55,7 +57,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 			break;
 		}
 
-		_execute(argv, path);
+		exec_func(argv, path, prog);
 
 		if (interactive == 0)
 		{
