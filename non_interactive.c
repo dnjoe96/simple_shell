@@ -9,17 +9,18 @@
  */
 int non_interactive(char **path, char *prog)
 {
-	char *line, *input;
+	char *line = NULL;
 	size_t len = 0;
 	/*ssize_t read;*/
 	char **argv;
 
-	line = malloc(sizeof(char *));
+	/*line = malloc(sizeof(char *));*/
 
 	while (getline(&line, &len, stdin) != -1)
 	{
-		input = line;
-		argv = _strtok(input, " \n\t");
+		argv = _strtok(line, " \n\t");
+		if (argv == NULL)
+			continue;
 		exec_func(argv, path, prog);
 	}
 
