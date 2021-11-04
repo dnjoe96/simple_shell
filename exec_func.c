@@ -5,6 +5,7 @@
  *
  * @argv: commands and options in array of strings
  * @path: paths from env variables
+ * @prog: the name of the program
  * Return: return 0
  */
 int exec_func(char **argv, char **path, char *prog)
@@ -22,7 +23,6 @@ int exec_func(char **argv, char **path, char *prog)
 	};
 
 	check_path = commandpath(argv[0], path);
-
 
 	for (i = 0; i < 5; i++)
 	{

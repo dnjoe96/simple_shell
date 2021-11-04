@@ -66,8 +66,8 @@ int main(__attribute__((unused)) int argc, char **argv)
 		free(commands);
 		free(argv);
 	}
-	
-	free(path);	
+
+	free(path);
 	if (commands != NULL)
 		free(commands);
 	if (argv != NULL)

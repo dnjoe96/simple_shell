@@ -26,7 +26,7 @@ char **getpath(void)
 		}
 		i++;
 	}
-	
+
 	free(paths1);
 	return (paths2);
 }
