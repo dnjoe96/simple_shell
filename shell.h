@@ -50,6 +50,9 @@ int print_env(char **argv);
 /* exec_func */
 int exec_func(char **argv, char **paths, char *prog);
 
+/* Non-interactive */
+int non_interactive(char **path, char *prog);
+
 /* fork_wait_exec function */
 int fork_wait_exec(char **argv);
 

@@ -25,20 +25,21 @@ int main(__attribute__((unused)) int argc, char **argv)
 	char *prog;
 	size_t bytes_read = 1;
 	ssize_t chars_read;
-	int interactive = 1;
 
 	signal(SIGINT, handle_sigkill);
 
 	path = getpath();
+	prog = argv[0];
 
 	if (!isatty(STDIN_FILENO))
-		interactive = 0;
-	prog = argv[0];
+	{
+		non_interactive(path, prog);
+		exit(0);
+	}
 
 	while (1 && argc == 1)
 	{
-		if (interactive == 1)
-			write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "$ ", 2);
 
 		commands = malloc(sizeof(char *));
 		chars_read = getline(&commands, &bytes_read, stdin);
@@ -59,10 +60,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 
 		exec_func(argv, path, prog);
 
-		if (interactive == 0)
-		{
-			break;
-		}
 		free(commands);
 		free(argv);
 	}
